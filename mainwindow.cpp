@@ -237,3 +237,74 @@ void MainWindow::on_actionSave_triggered()
     }
 }
 
+void MainWindow::on_actionSetRowColum_triggered()
+{
+    RowColumDialog* dialog = new RowColumDialog(this);
+    dialog->setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
+
+    dialog->setRowColum(model->rowCount(), model->columnCount());
+
+    int ret = dialog->exec();
+    if (ret == QDialog::Accepted){
+        // 设置表格纵列
+        model->setRowCount(dialog->row());
+        model->setColumnCount(dialog->colum());
+    }
+
+    delete dialog;
+    dialog = nullptr;
+}
+
+
+void MainWindow::on_actionHeader_triggered()
+{
+    if (headerDialog == NULL){
+        headerDialog = new HeaderDialog(this);
+    }
+
+    QStringList strList;
+    for (int i=0; i<model->columnCount(); i++) {
+        strList.append(model->horizontalHeaderItem(i)->text());
+    }
+    headerDialog->setStringList(strList);
+
+    int ret = headerDialog->exec();
+
+    if (ret == QDialog::Accepted){
+        model->setHorizontalHeaderLabels(headerDialog->getHeaderList());
+    }
+}
+
+// 定位
+void MainWindow::on_actionLoacte_triggered()
+{
+    if(localDialog == NULL){
+        localDialog = new LocateDialog(this);
+        connect(selection, &QItemSelectionModel::currentChanged, localDialog, &LocateDialog::selectionChanged);
+        connect(localDialog, &LocateDialog::actionEnabled, ui->actionLoacte, &QAction::setEnabled);
+        connect(localDialog, &LocateDialog::signalSetText, this, &MainWindow::setItemText);
+    }
+
+    if (selection == NULL)
+    {
+        QMessageBox::information(this, "提示", "请先选择单元格");
+        return;
+    }
+
+    QModelIndex index = selection->currentIndex();
+    localDialog->setRange(model->rowCount(), model->columnCount());
+    localDialog->setRowColum(index.row(), index.column());
+
+    localDialog->show();
+
+
+}
+
+void MainWindow::setItemText(int row, int colum, QString text)
+{
+    model->item(row, colum)->setText(text);
+}
+
+
+
+

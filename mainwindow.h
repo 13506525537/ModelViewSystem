@@ -11,6 +11,9 @@
 #include <QDebug>
 #include <QRegExp>
 #include <QMessageBox>
+#include "rowcolumdialog.h"
+#include "headerdialog.h"
+#include "locatedialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -53,6 +56,14 @@ private slots:
 
     void on_actionSave_triggered();
 
+    void on_actionSetRowColum_triggered();
+
+    void on_actionHeader_triggered();
+
+    void on_actionLoacte_triggered();
+
+    void setItemText(int row, int colum, QString text);
+
 private:
     Ui::MainWindow *ui;
 
@@ -64,6 +75,11 @@ private:
     // 创建模型类和选择模型类
     QStandardItemModel* model;
     QItemSelectionModel* selection;
+
+    HeaderDialog* headerDialog = NULL;
+
+    LocateDialog* localDialog = NULL;
+
 };
 
 #endif // MAINWINDOW_H

@@ -14,5 +14,8 @@
         <file>Image/text_left.png</file>
         <file>Image/text_mid.png</file>
         <file>Image/text_right.png</file>
+        <file>Image/actionHeader.png</file>
+        <file>Image/actionLocal.png</file>
+        <file>Image/actionRowColum.png</file>
     </qresource>
 </RCC>
