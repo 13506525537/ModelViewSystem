@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Image/actClear.png</file>
+        <file>Image/actCopy.png</file>
+        <file>Image/actDel.png</file>
+        <file>Image/actExit.png</file>
+        <file>Image/actNew.png</file>
+        <file>Image/actOpen.png</file>
+        <file>Image/actPaste.png</file>
+        <file>Image/actToolbar.png</file>
+        <file>Image/font_blod.png</file>
+        <file>Image/font_italic.png</file>
+        <file>Image/font_under.png</file>
+        <file>Image/text_left.png</file>
+        <file>Image/text_mid.png</file>
+        <file>Image/text_right.png</file>
+    </qresource>
+</RCC>
